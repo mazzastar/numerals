@@ -35,7 +35,6 @@ def format_numeral(number, numeral, numeral_5, numeral_10)
 		end
 end
 
-
 def translate_number(number)
 	number_array = number_to_array(number)
 	char_set = character_sets(number_array.length)
@@ -47,6 +46,8 @@ def translate_number(number)
 	results.join("")
 end
 
+
+
 def character_sets(length)
 	array_to_return = units_array(length).map do |units|
 		unitCharacters(units)	
@@ -56,3 +57,18 @@ def character_sets(length)
 	array_to_return
 	
 end
+
+def main()
+	puts "Please enter a number between 0-3999"
+	number = gets.chomp.to_i
+
+	while (!number.to_s.empty? && (number>3999||number <0))
+		puts "Please enter a number between 0-3999"
+		number = gets.chomp.to_i
+	end
+
+	puts translate_number(number)
+
+end
+
+main
