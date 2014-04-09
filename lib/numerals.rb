@@ -23,14 +23,7 @@ def units_array(length)
 	units[0..(length-1)].reverse
 end
 
-def translate_number(number)
-
-	number_array = number_to_array(number)
-	char_set = character_sets(number_array.length)
-
-	results = number_array.map.with_index do |number, index|
-		numeral, numeral_5, numberal_10=char_set[index]
-		
+def format_numeral(number, numeral, numeral_5, numeral_10)
 		if number >= 0 && number < 4
 			numeral*number 
 		elsif number ==4
@@ -38,10 +31,19 @@ def translate_number(number)
 		elsif (number >4 && number <9)
 		 	 numeral_5+numeral*(number-5) 
 		else
-			 numeral+numberal_10
+			 numeral+numeral_10
 		end
-	end
+end
 
+
+def translate_number(number)
+	number_array = number_to_array(number)
+	char_set = character_sets(number_array.length)
+
+	results = number_array.map.with_index do |number, index|
+		numeral, numeral_5, numeral_10=char_set[index]
+		format_numeral(number, numeral, numeral_5, numeral_10)
+	end
 	results.join("")
 end
 
@@ -54,18 +56,3 @@ def character_sets(length)
 	array_to_return
 	
 end
-
-def main()
-	puts "Please enter a number between 0-3999"
-	number = gets.chomp.to_i
-
-	while (!number.to_s.empty? && (number>3999||number <0))
-		puts "Please enter a number between 0-3999"
-		number = gets.chomp.to_i
-	end
-
-	puts translate_number(number)
-
-end
-
-main
