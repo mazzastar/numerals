@@ -1,10 +1,6 @@
 UNITS = [:ones, :tens, :hundreds, :thousands]
 NUMERALS = ["I", "V", "X", "L", "C", "D", "M", "_", "_"]
 
-def number_to_array(number)
-	number.to_s.chars.map{|char| char.to_i}
-end
-
 def unitCharacters(unit_to_find)
 	num_index = UNITS.index(unit_to_find)
 	startIndex = 2*(num_index)
@@ -16,6 +12,12 @@ def units_array(length)
 	UNITS[0..(length-1)].reverse
 end
 
+def character_sets(length)
+	array_to_return = units_array(length).map do |units|
+		unitCharacters(units)	
+	end	
+end
+
 def format_numerals(number, num_1, num_5, num_10)
 	case number 
 		when 0..3 then 	num_1*number 
@@ -23,6 +25,10 @@ def format_numerals(number, num_1, num_5, num_10)
 		when 5..8 then 	num_5+num_1*(number-5)
 		else			num_1+num_10		
 	end
+end
+
+def number_to_array(number)
+	number.to_s.chars.map{|char| char.to_i}
 end
 
 def translate_number(number)
@@ -33,12 +39,6 @@ def translate_number(number)
 		format_numerals(number, num_1, num_5, num_10)
 	end
 	results.join("")
-end
-
-def character_sets(length)
-	array_to_return = units_array(length).map do |units|
-		unitCharacters(units)	
-	end	
 end
 
 def main()
