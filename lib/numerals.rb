@@ -1,5 +1,5 @@
-UNITS = [:ones, :tens, :hundreds, :thousands]
-NUMERALS = ["I", "V", "X", "L", "C", "D", "M", "_", "_"]
+UNITS = [:ones, :tens, :hundreds, :thousands, :tenthousands, :onehundredthousands, :onemillions]
+NUMERALS = ["I", "V", "X", "L", "C", "D", "M", "V2", "X2", "L2", "C2", "D2", "M2"]
 
 def unitCharacters(unit_to_find)
 	num_index = UNITS.index(unit_to_find)
@@ -34,6 +34,7 @@ end
 def translate_number(number)
 	number_array = number_to_array(number)
 	char_set = character_sets(number_array.length)
+
 	results = number_array.map.with_index do |number, index|
 		num_1, num_5, num_10=char_set[index]
 		format_numerals(number, num_1, num_5, num_10)
@@ -42,15 +43,16 @@ def translate_number(number)
 end
 
 def main()
-	puts "Please enter a number between 0-3999"
+	puts "Please enter a number between 0-3999999"
 	number = gets.chomp.to_i
 
-	while (!number.to_s.empty? && (number>3999||number <0))
-		puts "Please enter a number between 0-3999"
+	while (!number.to_s.empty? && (number>3999999||number <0))
+		puts "Please enter a number between 0-3999999"
 		number = gets.chomp.to_i
 	end
 
 	puts translate_number(number)
 end
 
-main
+puts translate_number(3999999)
+# main

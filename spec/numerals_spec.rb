@@ -18,15 +18,6 @@ describe 'numerals' do
 		expect(number_to_array(13)).to eq [1, 3]
 	end
 
-	# it 'gets returns the correct unitsType for pointer' do
-	# 	expect(unitTypeAtIndex(0, 4)).to eq :thousands
-	# end
-	# it 'gets returns the correct unitsType for pointer' do
-	# 	expect(unitTypeAtIndex(1, 4)).to eq :hundreds
-	# end
-	# it 'gets returns the correct unitsType for pointer' do
-	# 	expect(unitTypeAtIndex(1, 3)).to eq :tens
-	# end
 	it 'gets the correct unit types' do
 		expect(unitCharacters(:ones)).to eq ["I", "V", "X"]
 	end
