@@ -3,13 +3,13 @@ require 'numerals'
 describe 'numerals' do 
 
 	it 'gets correct length' do
-		expect(length(1)).to eq 1
+		expect(length_of(1)).to eq 1
 	end
 	it 'gets correct length 2' do
-		expect(length(10)).to eq 2
+		expect(length_of(10)).to eq 2
 	end
 	it 'gets correct length 3' do
-		expect(length(100)).to eq 3
+		expect(length_of(100)).to eq 3
 	end
 	it 'gets character array' do
 		expect(number_to_array(12)).to eq [1, 2]
@@ -19,21 +19,23 @@ describe 'numerals' do
 	end
 
 	it 'gets the correct unit types' do
-		expect(unitCharacters(:ones)).to eq ["I", "V", "X"]
+		expect(character_set(2,1)).to eq ["I", "V", "X"]
+	end  
+	it 'gets the correct unit types' do
+		expect(character_set(5,3)).to eq ["X", "L", "C"]
 	end
 	it 'gets the correct unit types' do
-		expect(unitCharacters(:tens)).to eq ["X", "L", "C"]
-	end
-	it 'gets the correct unit types' do
-		expect(unitCharacters(:hundreds)).to eq ["C", "D", "M"]
+		expect(character_set(8,5)).to eq ["C", "D", "M"]
 	end
 
-	it 'returns the correct units for all entries in the number_array' do
-		expect(units_array(3)).to eq [:hundreds, :tens, :ones]
+	it 'produces "I", "V", "X" character set for length 1' do
+		expect(character_sets(1)).to eq [["I", "V", "X"]]
 	end
-
-	it 'returns the correct units for all entries in the number_array' do
-		expect(units_array(2)).to eq [:tens, :ones]
+	it 'produces "X", "L", "C" character set for length 2' do
+		expect(character_sets(2)).to eq [["X","L","C"],["I", "V", "X"]]
+	end
+	it 'produces "C", "D", "M" character set for length 3' do
+		expect(character_sets(3)).to eq [["C", "D","M"],["X","L","C"],["I", "V", "X"]]
 	end
 
 	it 'produces I for the number 1' do
@@ -80,21 +82,6 @@ describe 'numerals' do
 
 	it 'produces MCMXCIX for the number 1001' do
 		expect(translate_number(1999)).to eq "MCMXCIX"
-	end
-
-
-	it 'produces "I", "V", "X" character set for length 1' do
-		expect(character_sets(1)).to eq [["I", "V", "X"]]
-	end
-	it 'produces "X", "L", "C" character set for length 2' do
-		expect(character_sets(2)).to eq [["X","L","C"],["I", "V", "X"]]
-	end
-	it 'produces "C", "D", "M" character set for length 3' do
-		expect(character_sets(3)).to eq [["C", "D","M"],["X","L","C"],["I", "V", "X"]]
-	end
-
-	it 'gets a number from the user' do
-
 	end
 
 
